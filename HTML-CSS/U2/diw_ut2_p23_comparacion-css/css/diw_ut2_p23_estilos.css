@@ -1,0 +1,64 @@
+
+
+/* Tipografía y layout básicos */
+:root {/*define variables globales que se pueden reutilizar*/
+    --primario: #0d47a1;/*creamos variables con --*/
+    --acento: #c62828;
+}
+
+body {
+    font-family: Inter, system-ui, sans-serif;/*intenta usar Inter; si no está disponible, prueba con system-ui*/
+    background: #f5f7fb;
+    color: #222;
+}
+
+.cabecera {
+    border-bottom: 2px solid var(--primario);/*var para recuperar la variable*/
+}
+
+.titulo {
+    color: var(--primario);
+    margin-bottom: 0.25rem;
+}
+
+.slogan {
+    color: #607d8b;
+}
+
+/* Componentes */
+.tarjeta {
+    background: #fff;
+    border: 1px solid #dfe3eb;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+}
+
+.destacado {
+    background: #e8f0fe;
+}
+
+.boton {
+    display: inline-block;/*cepte dimensiones y relleno como un bloque*/
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primario);
+    text-decoration: none;
+}
+
+.item {
+    margin-bottom: 0.35rem;
+}
+
+.importante {
+    color: var(--acento);
+    font-weight: 700;
+}
+
+/* Ejemplo de especificidad */
+.tarjeta .importante {
+    text-decoration: underline;
+}
+
+#contenido .importante {
+    letter-spacing: 0.5px;
+}

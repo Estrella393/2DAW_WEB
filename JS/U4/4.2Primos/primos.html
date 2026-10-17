@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        // creo funcion primo y despues la repito hasta el 1000
+         function primo(num) {
+            cont =0;
+            for (let i=1; i<=num; i++) {
+                if (num%i==0) {
+                    cont++;
+                }
+            }//el uno no es primo
+            if (cont==2) {//si tiene dos divisores, es primo
+                document.write(num + "<br>");
+            }//podria poner todos los numeros sin filtrar y poner cada uno si es primo o no, pero eligo solo mostrar los primos
+        }
+
+        for (let i=1; i<=1000; i++) {
+            primo(i);
+        }
+
+
+        
+
+
+       /*no funciona, dice si es primo o no en cada numero
+        function primo(num){
+            for (let n=1; n<=num; n++){//primero reviso todos numeros y despues cada numero si es primo
+                cont=0;
+
+                for (let i=1; i<=n; i++){
+                    if (n%i==0){
+                        cont++;
+                }
+            }
+
+            if (cont==2){
+                document.write(n + "<br>");
+            }
+        }
+        cont == 2 ? document.write("Es primo") : document.write("No es primo");
+        }
+     primo(1000);*/
+    </script>
+</body>
+</html>

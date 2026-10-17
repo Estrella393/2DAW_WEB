@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+/*tabla que ocupe todo el ancho, borde 1px negro interior y 3px negro exterior, 10 filas y 4 columnas
+Se prodra cambiar las filas, clomunas y el color(el mismo interior o exterior) */
+        function tabla(filas = 10, columnas = 4, color = "black") {
+            document.write(
+                '<table style="border: 3px solid ' + color + ';  width: 100%; border-collapse: collapse;">'
+            );
+             for (let i = 0; i < filas; i++) {
+                document.write("<tr>");
+
+                for (let j = 0; j < columnas; j++) {
+                    document.write(
+                        '<td style="border: 1px solid ' + color + '; height: 30px;"></td>'
+                    );//meto espacio en el td con height para que no quede tan pegado
+                }
+
+                document.write("</tr>");
+            }
+            document.write("</table>");
+        }
+
+
+        /*Usa la función para crear una tabla con borde negro de 10 filas y 4 columnas
+• Úsala de nuevo para generar una tabla de 20 filas y 10 columnas, con borde negro
+• Finalmente, consigue dibujar 10 tablas de 5 filas y 4 columnas que tengan borde verde*/
+
+tabla();
+document.write("<br>");
+
+tabla(20, 10);
+document.write("<br>");
+
+for (let i = 0; i < 10; i++) {
+    tabla(5, 4, "green");
+}
+    </script>
+</body>
+</html>
