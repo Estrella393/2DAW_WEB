@@ -1,0 +1,15 @@
+"5" + 3;
+"5" * 3;
+"5" - "2";
+Number("");
+Number("12px");
+parseInt("12px");
+parseFloat("3.75€");
+"10" == 10;
+"10" === 10;
+null + 1;
+undefined + 1;
+typeof NaN;
+Boolean("0");
+0 || "valor por defecto";
+0 ?? "valor por defecto";
