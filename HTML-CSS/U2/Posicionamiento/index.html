@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Usuarios · Panel de Olmo &amp; Sal</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="logo" href="index.html">Olmo &amp; Sal <span class="logo__panel">Panel</span></a>
+
+      <nav class="menu">
+        <ul class="menu__lista">
+          <li><a class="menu__enlace" href="index.html" aria-current="page">Usuarios</a></li>
+          <!-- alta.html y baja.html se crearán en la siguiente práctica -->
+          <li><a class="menu__enlace" href="alta.html">Dar de alta</a></li>
+          <li><a class="menu__enlace" href="baja.html">Dar de baja</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor pagina">
+    <div class="pagina__cabeza">
+      <div>
+        <p class="antetitulo">Gestión</p>
+        <h1>Usuarios registrados</h1>
+        <p class="pagina__resumen">4 usuarios registrados: 3 clientes y 1 de personal</p>
+      </div>
+      <a class="boton" href="alta.html">Dar de alta</a>
+    </div>
+
+    <div class="tabla-caja">
+      <table class="usuarios">
+        <caption>Usuarios con acceso a las reservas online, ordenados por fecha de alta</caption>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo electrónico</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Fecha de alta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Laura Martín</th>
+            <td>laura.martin@correo.example</td>
+            <td>600 111 222</td>
+            <td><span class="tipo tipo--cliente">Cliente</span></td>
+            <td>02/09/2026</td>
+          </tr>
+          <tr>
+            <th>Javier Ruiz</th>
+            <td>javier.ruiz@correo.example</td>
+            <td>600 333 444</td>
+            <td><span class="tipo tipo--cliente">Cliente</span></td>
+            <td>15/09/2026</td>
+          </tr>
+          <tr>
+            <th>Marta Gómez</th>
+            <td>marta.gomez@olmoysal.example</td>
+            <td>600 555 666</td>
+            <td><span class="tipo tipo--personal">Personal</span></td>
+            <td>01/10/2026</td>
+          </tr>
+          <tr>
+            <th>Daniel Ortega</th>
+            <td>daniel.ortega@correo.example</td>
+            <td>—</td>
+            <td><span class="tipo tipo--cliente">Cliente</span></td>
+            <td>08/10/2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p><small>© 2026 Olmo &amp; Sal · Panel de gestión · Proyecto de clase</small></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+:root {
+  --color-primario: #3f5a3c; /* oliva */
+  --color-primario-claro: #e3e8df;
+  --color-acento: #b04a34; /* terracota */
+  --color-acento-hover: #96402d;
+  --color-fondo: #faf6ef; /* crema */
+  --color-blanco: #ffffff;
+  --color-arena: #e7dfd1;
+  --color-borde: #ddd5c6;
+  --color-texto: #1f1f1c;
+  --color-texto-suave: #6b6b63;
+  --fuente-titulos: Georgia, "Times New Roman", serif;
+  --fuente-texto: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+p {
+  margin: 0;
+}
+a {
+  color: var(--color-acento);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-family: var(--fuente-titulos);
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+/* Todo enlace enfocado con el teclado se ve igual, lleve la clase que lleve */
+a:focus {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 2px;
+}
+
+.pagina__cabeza {
+  display: flex;
+  justify-content: space-between; /* título a la izquierda, botón a la derecha */
+  align-items: flex-end; /* el botón se alinea con el resumen */
+  margin-bottom: 1.5rem;
+}
+.pagina__resumen {
+  color: var(--color-texto-suave);
+}
+
+/* ---------- Bloque: tabla-caja ---------- */
+.tabla-caja {
+  padding: 0 1.5rem;
+  border-radius: 20px;
+  background-color: var(--color-blanco);
+}
+
+/* ---------- Bloque: usuarios ---------- */
+.usuarios {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.usuarios th,
+.usuarios td {
+  padding: 1rem 1rem 1rem 0;
+  border-bottom: 1px solid var(--color-borde);
+  text-align: left;
+}
+.usuarios thead th {
+  color: var(--color-texto-suave);
+  font-size: 0.8125rem;
+}
+
+/* ---------- Bloque: tipo ---------- */
+.tipo {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--color-primario-claro);
+  color: var(--color-primario);
+  font: bold 0.8125rem/1.25rem var(--fuente-texto);
+}
+
+/* Modificador: solo lo que cambia respecto a .tipo */
+.tipo--personal {
+  background-color: var(--color-arena);
+  color: var(--color-texto);
+}
+
+/* Al pasar el ratón, el borde reservado se ve en gris */
+.menu__enlace:hover {
+  border-color: var(--color-borde);
+}
+/* El enlace de la página actual */
+.menu__enlace[aria-current="page"] {
+  border-color: var(--color-acento);
+  color: var(--color-acento);
+  font-weight: bold;
+}
+.boton:hover {
+  border-color: var(--color-acento-hover);
+  background-color: var(--color-acento-hover);
+  color: var(--color-blanco);
+}
