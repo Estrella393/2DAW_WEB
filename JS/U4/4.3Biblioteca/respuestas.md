@@ -73,9 +73,38 @@ A4. Set y Map: lista de inscripciones
 1. Usa un Set para obtener los correos sin repetir. ¿Cuántos salen? ¿Por qué no es el resultado que
    esperabas?
    Distigue entre mayusculas y minusculas, por lo que salen 6. Deberian haber salido 4 si no tomata en cuenta eso.
+   Set(6) {
+   'ana@ies.es',
+   'luis@ies.es',
+   'ANA@ies.es',
+   'marta@ies.es',
+   'pablo@ies.es',
+   'Marta@ies.es'
+   }
 
 2. Repite el apartado normalizando antes cada correo a minúsculas (correo.toLowerCase()).
    ¿Cuántos salen ahora?
+   Ahora solo salen 4.
+   Set(4) { 'ana@ies.es', 'luis@ies.es', 'marta@ies.es', 'pablo@ies.es' }
+
 3. Usa un Map para contar cuántas veces aparece cada correo normalizado. Recórrelo y muestra
    luis@ies.es → 2.
+
+   ana@ies.es-> 2
+   luis@ies.es-> 2
+   marta@ies.es-> 2
+   pablo@ies.es-> 1
+
 4. Convierte el Set del apartado 2 en un array ordenado alfabéticamente.
+
+A5. Funciones y callbacks
+
+1. Escribe transformar(array, fn), que devuelve un array nuevo aplicando fn a cada elemento.
+   Usa un bucle, no map.
+2. Escribe quedarse(array, condicion), que devuelve un array nuevo con los elementos que
+   cumplen la condición. Usa un bucle, no filter.
+3. Pruébalas con funciones flecha: duplica los números de [3, 8, 1, 6] y quédate con los pares.
+4. Reescribe el apartado 3 con map y filter. Explica en dos líneas qué tienen en común tus
+   funciones y los métodos de los arrays.
+5. Con const precios = [12, 45, 8, 99, 30];, encadena métodos para obtener el total con
+   IVA (21 %) de los productos de más de 10 €, redondeado a dos decimales.
