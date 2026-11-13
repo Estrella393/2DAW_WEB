@@ -1,0 +1,31 @@
+h1 {
+  color: darkkhaki;
+  background-color: darksalmon;
+}
+
+ul {
+  background-color: darksalmon;
+}
+
+li:nth-child(1) {
+  color: blanchedalmond !important;
+}
+
+li:nth-child(2) {
+  color: rgb(234, 255, 205);
+}
+
+li:nth-child(2) {
+  color: rgb(246, 205, 255);
+}
+
+/*ID unico y con #*/
+
+#t_principal {
+  color: rgb(244, 233, 233);
+  background-color: darkseagreen;
+  border: 3px dotted grey;
+  border-radius: 10px;
+  /*border-radius: 10px 0 5px 1%;*/
+  padding: 3em; /*medidas relativas mejro*/
+}

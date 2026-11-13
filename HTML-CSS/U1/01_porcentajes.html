@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Columnas y box-sizing</title>
+
+    <style>
+      .contenedor {
+        width: 600px;
+        border: 3px solid black;
+        margin-bottom: 40px;
+      }
+
+      .fila {
+        display: flex;
+      }
+
+      .columna {
+        padding: 16px;
+        /*flex-shrink: 0; /*hace que puedan salir los elementos */
+      }
+
+      .lateral {
+        width: 30%;
+        background-color: lavender;
+      }
+
+      .principal {
+        width: 70%;
+        background-color: lightsalmon;
+      }
+
+      .fila-a .columna {
+        box-sizing: content-box; /*cuenta el padding*/
+      }
+
+      .fila-b .columna {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Fila A: content-box</h2>
+    <div class="contenedor">
+      <div class="fila fila-a">
+        <div class="columna lateral">Lateral 30%</div>
+        <div class="columna principal">Principal 70%</div>
+      </div>
+    </div>
+
+    <h2>Fila B: border-box</h2>
+    <div class="contenedor">
+      <div class="fila fila-b">
+        <div class="columna lateral">Lateral 30%</div>
+        <div class="columna principal">Principal 70%</div>
+      </div>
+    </div>
+  </body>
+</html>

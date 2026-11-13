@@ -92,7 +92,7 @@ class Servidor extends Ordenador {
   toString() {}
 }
 
-//Parte4
+//Parte 4
 class Gaming extends Ordenador {
   constructor(marca, modelo, grafica, ram = 16, disco = 1024, pulgadas = 27) {
     super(marca, modelo, ram, disco, pulgadas);
