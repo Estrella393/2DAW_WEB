@@ -60,6 +60,7 @@ console.log(portatil2.toString());
 new Ordenador("Acer", "Aspire").precio();
 new Portatil("Apple", "MacBook Air").precio();
 
+//Parte 2
 class Tablet extends Ordenador {
   constructor(
     marca,
@@ -79,6 +80,7 @@ class Tablet extends Ordenador {
   }
 }
 
+//Parte 3
 class Servidor extends Ordenador {
   constructor(marca, modelo, nucleos = 8, ram = 32, disco = 2000) {
     super(marca, modelo, ram, disco, 0); //siempre 0 pulgadas
@@ -90,6 +92,7 @@ class Servidor extends Ordenador {
   toString() {}
 }
 
+//Parte4
 class Gaming extends Ordenador {
   constructor(marca, modelo, grafica, ram = 16, disco = 1024, pulgadas = 27) {
     super(marca, modelo, ram, disco, pulgadas);
