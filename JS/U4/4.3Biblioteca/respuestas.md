@@ -1,7 +1,7 @@
 A1. Conversiones de tipos
 
 | Expresión                | Mi predicción | Resultado real      | Tipo (typeof) | Explicación                           |
-| ------------------------ | ------------- | ------------------- | ------------- | ------------------------------------- | ------ | ---------- |
+| ------------------------ | ------------- | ------------------- | ------------- | ------------------------------------- | 
 | "5" + 3                  | "53"          | "53"                | string        | Une el texto y el número              |
 | "5" \* 3                 | "555"         | 15                  | number        | Convierte el "5" en número            |
 | "5" - "2"                | 3             | 3                   | number        | Los convierte en números              |
@@ -15,7 +15,7 @@ A1. Conversiones de tipos
 | undefined + 1            | NaN           | NaN                 | number        | undefined produce NaN                 |
 | typeof NaN               | number        | number              | number        | El tipo de NaN es number              |
 | Boolean("0")             | true          | true                | boolean       | Una cadena con contenido es verdadera |
-| 0                        |               | "valor por defecto" | 0             | valor por defecto                     | string | 0 es falso |
+| 0|| "valor por defecto"  | 0             | valor por defecto   | string        | 0 es falso                            |
 | 0 ?? "valor por defecto" | 0             | 0                   | number        | 0 no es ni null ni undefined          |
 
 Para terminar, responde: ¿por qué NaN === NaN devuelve false? ¿Cómo compruebas correctamente si
@@ -96,15 +96,59 @@ A4. Set y Map: lista de inscripciones
    pablo@ies.es-> 1
 
 4. Convierte el Set del apartado 2 en un array ordenado alfabéticamente.
+   Array(4)
+      0: "ana@ies.es"
+      1: "luis@ies.es"
+      2: "marta@ies.es"
+      3: "pablo@ies.es"
+
 
 A5. Funciones y callbacks
 
-1. Escribe transformar(array, fn), que devuelve un array nuevo aplicando fn a cada elemento.
-   Usa un bucle, no map.
-2. Escribe quedarse(array, condicion), que devuelve un array nuevo con los elementos que
-   cumplen la condición. Usa un bucle, no filter.
+1. Escribe transformar(array, fn), que devuelve un array nuevo aplicando fn a cada elemento. Usa un bucle, no map.
+   (4) [21, 34, 13, 55]
+
+2. Escribe quedarse(array, condicion), que devuelve un array nuevo con los elementos que cumplen la condición. Usa un bucle, no filter.
+   (3) [20, 12, 54]
+
 3. Pruébalas con funciones flecha: duplica los números de [3, 8, 1, 6] y quédate con los pares.
-4. Reescribe el apartado 3 con map y filter. Explica en dos líneas qué tienen en común tus
-   funciones y los métodos de los arrays.
-5. Con const precios = [12, 45, 8, 99, 30];, encadena métodos para obtener el total con
-   IVA (21 %) de los productos de más de 10 €, redondeado a dos decimales.
+   (4) [6, 16, 2, 12]
+
+4. Reescribe el apartado 3 con map y filter. Explica en dos líneas qué tienen en común tus funciones y los métodos de los arrays.
+   (4) [4, 9, 2, 7]
+   (2) [8, 6]
+
+5. Con const precios = [12, 45, 8, 99, 30];, encadena métodos para obtener el total con IVA (21 %) de los productos de más de 10 €, redondeado a dos decimales.
+   225.06
+
+
+A6. Depuración 
+1. Pon un punto de interrupción dentro del bucle y avanza paso a paso. Vigila i, notas[i], suma y 
+typeof suma. 
+![alt text](image.png)
+2. Localiza al menos cuatro errores. Anótalos en esta tabla: 
+
+|Línea |Error    |Cómo lo detectaste    |Corrección     |
+|------|---------|----------------------|---------------|
+|5    |no incluye las notas = a 5| la tercera nota no entra en el if |poner notas[i]>=5 |
+|5    |pasa "7" como  string| concatena en vez de sumar    | añadir typeof notas[i] === 'number' |
+|10   |no utiliza contador | divide entre 5      |  return suma / contador |
+|4    |se pasa de posiciones| i llega hasta 5   |i < notas.length |
+ 
+3. Corrige la función. Haz que devuelva null si no hay ninguna nota aprobada. 
+   null
+4. Adjunta una captura del depurador detenido en el punto de interrupción, con las variables visibles.
+![alt text](image-1.png)
+
+
+
+
+
+Parte B — Reto integrador: Biblioteca del IES 
+1. Consulta en MDN la página del elemento <script> y explica con tus palabras qué hacen los 
+atributos defer y async. Indica en qué se diferencian. 
+2. Haz la prueba: quita defer de los dos <script> de index.html, recarga la página y copia el 
+error que aparece en la consola. ¿Por qué se produce? 
+3. Vuelve a poner defer y cambia el orden de los scripts, de modo que app.js se cargue antes que 
+datos.js. ¿Qué error aparece ahora y por qué? 
+4. ¿Por qué defer es más adecuado que async en este proyecto?

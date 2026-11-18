@@ -24,3 +24,8 @@ section {
   padding: 1rem;
   margin-bottom: 1rem;
 }
+
+.prestado {
+  background-color: rgb(242, 96, 67);
+  color: rgb(255, 255, 255);
+}

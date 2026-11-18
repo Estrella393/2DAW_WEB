@@ -33,5 +33,5 @@ for (let [clave, valor] of mapa1) {
   console.log(clave + "-> " + valor);
 }
 
-const ordenado = Array.from(inscripciones2).sort();
+const ordenado = Array.from(inscripciones2).sort();//o con operador spread()  const array = [...inscripciones2];
 console.log(ordenado);
