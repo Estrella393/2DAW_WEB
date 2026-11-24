@@ -6,41 +6,138 @@ export class Biblioteca {
     constructor() {
         this.libros = [];
     }
-  // métodos de RF2 y RF3
+
+// métodos de RF2 y RF3
+/**
+ * Añade un libro al catálogo
+ * @param {Libro} libro que quieres agregar
+ * @returns {void}
+ */
   agregar(libro){
-
+    this.libros.push(libro);
   }
+/**
+ * Añade un libros a partir de leer un texto y utilizando el método agregar de antes
+ * @param {string} texto que quieres agregar
+ * @returns {void}
+ */
+  cargarDesdeTexto(texto){
+    //formo array con los libros
+    const cadaLibro = texto.split("\n");
+    const campos=cadaLibro.map(libro => libro.split(";")) ;
+
+    for(let i=0; i<campos.length; i++){//length empieza desde 1, no poner =
+        const valorDisponible = campos[5].trim().toLowerCase() == "si" ? true : false;
+        //o tambien(ya que === devuleve automaticamente True y False):const valorDisponible = c[5].trim().toLowerCase() === "si";
+        this.agregar(new Libro(campo[0].trim(),campo[1].trim(),Number(campo[2].trim),Number(campo[3].trim),
+        campo[4].trim(), valorDisponible))   
+    }
+  }
+
+
+/**
+ * Devuelve libros cuyo título o autor contienen el texto, sin distinguir mayúsculas ni minúsculas
+ * @param {string} texto con el que quieres buscar
+ * @returns {Libros[]} copia del array con el resultado
+ */
   buscar(texto){
-
+    const textoNormalizado= texto.toLowerCase();
+    //no es necesario, ya se guerda con filter: const arrayContenedor=[]
+    return this.libros.filter(libro=>libro.autor.toLowerCase().includes(textoNormalizado)||libro.titulo.toLowerCase().includes(texto));
   }
-  filtrarPorGenero(genero){
 
+/**
+ * Devuelve libros que pertenezcan a ese género
+ * @param {string} genero con el que quieres buscar
+ * @returns {Libros[]} copia del array con el resultado
+ */
+  filtrarPorGenero(genero){//filter, map y slice NO modifican el array
+    const resultado=this.libros.filter(libro => libro.genero.toLowerCase()==genero.toLowerCase());
+    return resultado;
   }
-  //si pone true se ponen los libros disponibles y si pone false los prestados
+
+/**
+ * si pone true se devuelven los libros disponibles y si pone false los prestados
+ * @param {boolean} genero con el que quieres buscar
+ * @returns {Libros[]} copia del array con el resultado
+ */
   filtrarPorDisponibilidad(disponible){
         //si el atributo prestado es falso significa que estan disponibles
-        if(disponible==true){
-            const resultado=libros.filter(libro => !libro.prestado);//NO libro.!prestado
-            return resultado;
+        if(disponible){
+            return this.libros.filter(libro => libro.disponible);
         }
         else{
-            const resultado=libros.filter(libro => libro.prestado);//NO libro.!prestado
-            return resultado;
+            return this.libros.filter(libro => !libro.disponible);//NO libro.!prestado
         }
+        //o simplemente:return this.libros.filter(libro => libro.disponible === disponible);
   }
-  //no modificar array original
-  ordenarPor(campo, ascendente){
 
-  }
+  /**
+ * Ordenar por campo en orden astendente o destendente sin modificar array original.
+ *  Y tiene que valer para string(localCompare) o numeros
+ * @param {string} campo con el que quieres buscar
+ * @param {boolean} ascendente define el orden
+ * @returns {Libro[]} nuevaBiblio: copia del array de Libro con el resultado
+ */
+    ordenarPor(campo, ascendente) {
+        const nuevaBiblio = [...this.libros];//no vale const nuevaBiblio = this.libros; pq apuntaria al mismo array
+
+        if (campo === "titulo" || campo === "autor") {
+            nuevaBiblio.sort((libro1, libro2) => libro1[campo].localeCompare(libro2[campo]));
+        } 
+        if (campo === "anio" || campo === "paginas") {
+            nuevaBiblio.sort((libro1, libro2) => libro1[campo] - libro2[campo]);
+        } 
+        if (!ascendente) {
+             nuevaBiblio.reverse();
+        }
+        return nuevaBiblio;
+    }
+
+
+  /**
+ * Sacar una lista de los géneros
+ * @returns {Set} un set con el resultado
+ */    
   generos(){
     //saco los generos con un map, quito duplicados con un set
-    const generos = libros.map(libro => libro.genero);//saco los genrros
+    const generos = this.libros.map(libro => libro.genero);//saco los genrros
     const sinDuplicar = new Set(generos);
     return sinDuplicar;
   }
 }
 
+
+
+
 export const catalogo = new Biblioteca();
-catalogo.agregar(new Libro("Niebla", "Miguel de Unamuno", 1914, 280, "novela"));
+catalogo.agregar(new Libro("Niebla", "Miguel de Unamuno", 1914, 280, "novela", true));
+catalogo.agregar(new Libro("El Quijote", "Miguel de Cervantes", 1605, 1250, "novela", true));
+catalogo.agregar(new Libro("La casa de Bernarda Alba", "Federico García Lorca", 1936, 120, "teatro", false));
+catalogo.agregar(new Libro("Odisea", "Homero", -700, 456, "poesía", true));
+catalogo.agregar(new Libro("Historia de dos ciudades", "Charles Dickens", 1859, 488, "novela", false));
+catalogo.agregar(new Libro("El principito", "Antoine de Saint-Exupéry", 1943, 96, "novela", true));
+catalogo.agregar(new Libro("El diario de Ana Frank", "Ana Frank", 1947, 400, "biografía", false));
+catalogo.agregar(new Libro("El Señor de los Anillos", "J.R.R. Tolkien", 1954, 1200, "fantasía", true));
 // ... resto de libros y cargarDesdeTexto()
+catalogo.cargarDesdeTexto(`Las aventuras de Alicia en el país de las maravillas;Lewis Carroll;1865;200;fantasía;si
+Sueño en el pabellón rojo;Cao Xueqin;1791;2500;novela;no
+Cien años de soledad;Gabriel García Márquez;1967;512;novela;si
+El guardián entre el centeno;J.D. Salinger;1951;280;novela;no`);
+
+/*ARRAY INICIAL DE LIBROS:
+const biblioteca = [
+  new Libro("El Quijote", "Miguel de Cervantes", 1605, 1250, "novela", true),
+  new Libro("La casa de Bernarda Alba", "Federico García Lorca", 1936, 120, "teatro", false),
+  new Libro("Niebla", "Miguel de Unamuno", 1914, 280, "novela", true),
+  new Libro("Odisea", "Homero", -700, 456, "poesía", true),
+  new Libro("Historia de dos ciudades", "Charles Dickens", 1859, 488, "novela", false),
+  new Libro("El principito", "Antoine de Saint-Exupéry", 1943, 96, "novela", true),
+  new Libro("El diario de Ana Frank", "Ana Frank", 1947, 400, "biografía", false),
+  new Libro("El Señor de los Anillos", "J.R.R. Tolkien", 1954, 1200, "fantasía", true),
+  new Libro("Las aventuras de Alicia en el país de las maravillas", "Lewis Carroll", 1865, 200, "fantasía", true),
+  new Libro("Sueño en el pabellón rojo", "Cao Xueqin", 1791, 2500, "novela", false),
+  new Libro("Cien años de soledad", "Gabriel García Márquez", 1967, 512, "novela", true),
+  new Libro("El guardián entre el centeno", "J.D. Salinger", 1951, 280, "novela", false),
+];*/
    
