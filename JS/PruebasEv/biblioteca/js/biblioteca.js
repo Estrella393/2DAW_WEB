@@ -29,8 +29,8 @@ export class Biblioteca {
     for(let i=0; i<campos.length; i++){//length empieza desde 1, no poner =
         const valorDisponible = campos[5].trim().toLowerCase() == "si" ? true : false;
         //o tambien(ya que === devuleve automaticamente True y False):const valorDisponible = c[5].trim().toLowerCase() === "si";
-        this.agregar(new Libro(campo[0].trim(),campo[1].trim(),Number(campo[2].trim),Number(campo[3].trim),
-        campo[4].trim(), valorDisponible))   
+        this.agregar(new Libro(campo[0].trim(),campo[1].trim(),Number(campo[2].trim()),Number(campo[3].trim()),
+        campo[4].trim(), valorDisponible)) ; 
     }
   }
 
@@ -43,7 +43,7 @@ export class Biblioteca {
   buscar(texto){
     const textoNormalizado= texto.toLowerCase();
     //no es necesario, ya se guerda con filter: const arrayContenedor=[]
-    return this.libros.filter(libro=>libro.autor.toLowerCase().includes(textoNormalizado)||libro.titulo.toLowerCase().includes(texto));
+    return this.libros.filter(libro=>libro.autor.toLowerCase().includes(textoNormalizado)||libro.titulo.toLowerCase().includes(textoNormalizado));
   }
 
 /**
@@ -105,11 +105,57 @@ export class Biblioteca {
     const sinDuplicar = new Set(generos);
     return sinDuplicar;
   }
+
+//RF3
+  /**
+ * Hace un objeto con: total de libros, disponibles, prestados,
+ *  media de páginas (redondeada con Math), libro más antiguo 
+ * y número de libros por género (con un Map)
+ * @returns {Object} un set con el resultado
+ */  
+estadisticas(){
+  const estadisticas = new Object();
+  estadisticas.total = this.libros.length;
+  estadisticas.disponibles = this.filtrarPorDisponibilidad(true).length;//this tambien en los métodos de clase(al igual que los atributos)
+  estadisticas.prestados = this.filtrarPorDisponibilidad(false).length;
+  estadisticas.media =Math.round(this.libros.reduce((cont, libro)=>cont+libro.paginas, 0) / this.libros.length);
+  estadisticas.masAntiguo =Math.min(...this.libros.map(libro => libro.anio));//que utilizar el spread para que "separe" los elementos del array
+  //o con reduce:  this.libros.reduce((min, libro)=>Math.min(min, libro.anio), this.libros[0].anio);
+  const mapa = new Map();
+  for (const libro of this.libros) {
+      mapa.set(libro.genero, (mapa.get(libro.genero)??0) + 1);//si es undefined lo inicilaiza a 0, sino suma
+  }
+  estadisticas.porGenero= mapa;
+  return estadisticas;
 }
 
+//RF4
+  /**Genera seccion con título y:
+ * Cada tarjeta muestra título, autor, año, páginas, género y estado. Si la lista está vacía, 
+ * muestra «No hay libros en esta sección»
+ * @returns {Object} un set con el resultado
+ */
+pintarSeccion(titulo, lista) {//introduce código HTML dentro de un elemento de la página
+  let tarjetas = "";
+  if (lista.length === 0) {
+    tarjetas="<p>No hay libros en esta sección</p>";
+  } else {
+    for (const libro of lista) {// class="tarjeta"
+      tarjetas += `<article>
+          <h3>${libro.titulo}</h3>
+          <p>Autor: ${libro.autor}</p>
+          <p>Año: ${libro.anio}</p>
+          <p>Páginas: ${libro.paginas}</p>
+          <p>Género: ${libro.genero}</p>
+          <p>Estado: ${libro.disponible ? "Disponible" : "Prestado"}</p>
+        </article>`;
+    }
+  }
+  document.querySelector("#contenedor").innerHTML+=`<section><h2>${titulo}</h2>${tarjetas}</section>`;
+  //NO =: al llamar a la funcion dos veces me borra el cintenido anterior 
+}
 
-
-
+}
 export const catalogo = new Biblioteca();
 catalogo.agregar(new Libro("Niebla", "Miguel de Unamuno", 1914, 280, "novela", true));
 catalogo.agregar(new Libro("El Quijote", "Miguel de Cervantes", 1605, 1250, "novela", true));
