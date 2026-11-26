@@ -4,12 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="ej1.js"></script>
+    <script src="ej1.js" defer></script>
+    <style>
+      #formulario {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+      }
+
+      #producto-mostardo {
+        margin-top: 50px;
+      }
+
+      label,
+      button {
+        margin-top: 10px;
+      }
+    </style>
   </head>
   <body>
-    <input type="text" id="id" />
-    <input type="text" id="producto" />
-    <button id="boton">Aplicar</button>
-    <p id="producto-mostrado"></p>
+    <h1>TIENDA ROPA</h1>
+
+    <div>
+      <ul id="producto-mostrado"></ul>
+    </div>
+
+    <div id="form">
+      <form id="formulario">
+        <label for="id">ID:</label>
+        <input type="text" id="id" placeholder="id" />
+
+        <label for="nombre">ID:</label>
+        <input type="text" id="producto" placeholder="nombre" />
+
+        <button id="boton">Aplicar</button>
+      </form>
+    </div>
+
+    <div>
+      <ul id="producto-mostrado"></ul>
+    </div>
   </body>
 </html>
