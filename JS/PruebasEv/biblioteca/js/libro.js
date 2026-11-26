@@ -11,8 +11,8 @@ export class Libro {
   }
   //si esta disponible se presta y se cambia el estado, si no esta disponible se devuleve false
   prestar(){
-    if (this.libro.disponible==true){
-        this.libro.disponible=false;
+    if (this.disponible==true){
+        this.disponible=false;
         return true;
     }
     else{
@@ -21,8 +21,8 @@ export class Libro {
   }
   //lo marca como disponible; mismo comportamiento si ya lo estaba
   devolver(){
-    if (this.libro.disponible==false){
-        this.libro.disponible=true;
+    if (this.disponible==false){
+        this.disponible=true;
         return true;
     }
     else{
@@ -31,7 +31,7 @@ export class Libro {
   }
   //devuelve los años desde su publicación, calculados con el objeto Date 
   antiguedad(){
-        return new Date().getFullYear()-this.libro.anio;
+        return new Date().getFullYear()-this.anio;
   }
 
   resumen() {

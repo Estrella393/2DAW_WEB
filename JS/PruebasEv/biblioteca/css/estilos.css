@@ -1,0 +1,65 @@
+
+
+
+/*04 Modelo de caja*/
+* {
+    box-sizing: border-box;
+}
+section {
+    width: 90%;
+    margin: 2rem auto;
+    padding: 1.5rem;
+}
+.tarjeta {
+    width: 100%;
+    margin: 0.5rem;
+    padding: 1.5rem;
+}
+
+
+/*05 Bordes CSS*/
+.tarjeta {
+    border: 2px solid;
+    border-radius: 0.8rem;
+}
+.tarjeta.disponible {
+    border-color: green;
+}
+.tarjeta.noDisponible {
+    border-color: red;
+}
+#estadisticas {
+    border-radius: 0.8rem;
+}
+
+
+/*07 Posicionamiento*/
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.tarjeta {
+    position: relative;
+    max-width: 20rem;
+}
+.prestado {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+/*08 Flexbox*/
+.contenedor-tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+#indice{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    background-color: #bdc39f;
+}
