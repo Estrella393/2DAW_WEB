@@ -1,19 +1,101 @@
 /*00 02 03  */
 :root {
-  --color-indice-hover: #6a502c;
-  --color-fondo-indice: #ad904d;
+  --color-fondo-indice-secciones: #658e6b;
+  --color-indice-hover: #072f06;
+
   --color-blanco: #ffffff; /*para la letra del indice */
 
   --color-fondo: #faf6ef;
 
-  --color-verde: #3f5a3c;
-  --color-rojo: #b04a34;
-  --color-tarjeta: #e7dfd1;
-  --color-secciones: #ddd5c6;
+  --color-verde: #146a0b;
+  --color-rojo: #c15239;
 
-  --color-texto: #1f1f1c;
-  --color-texto-suave: #6b6b63;
 }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--color-fondo);
+  margin: 0;
+  color: var(--color-indice-hover);
+}
+
+
+/*06 Tipografía, textos y enlaces*/
+h1,h2,h3 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+h1, h2, a{
+  color: var(--color-blanco);
+  text-align: center;
+  font-weight: bold;
+}
+h1 {/*titulo índice*/
+  font-size: 2rem;
+}
+h2 {/*título seccion*/
+  font-size: 1.5rem;
+}
+h3 {/*título de los libros*/
+  font-size: 1.2rem;
+}
+
+/*mas estilos de la cabezera*/
+header {
+  background-color: var(--color-fondo-indice-secciones);
+  padding: 0.75rem;
+}
+
+header h1 {
+  margin: 0;/*quitar espacio en blanco*/
+}
+
+#indice a {
+  /*text-align: center; tiene que ir en el contenedor solo*/ 
+  text-decoration: none;
+}
+/*cuando pasas por encima*/
+#indice a:hover {
+  background-color: var(--color-indice-hover);
+}
+/*cuando seleccionas*/
+#indice a:focus {
+  outline: 2px solid var(--color-blanco);
+}
+/*tabla estadísticas*/
+#estadisticas {
+  margin-top: 2rem;
+}
+
+#estadisticas table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+/*la segunda fila (tr)  de la tabla dentro de #estadisticas */
+#estadisticas tr:nth-child(2) {
+  background-color:var(--color-blanco);
+}
+
+#estadisticas th,
+#estadisticas td {
+  padding: 0.8rem;
+  border: 1px solid var(--color-texto-suave);
+}
+
+#estadisticas th {
+  background-color: var(--color-fondo-indice-secciones);
+}
+
+
+/*pie de página*/
+footer { 
+      background-color: var(--color-blanco); 
+      text-align: right;
+      width: 100%; 
+      padding: 2rem;
+    } 
 
 /*04 Modelo de caja*/
 * {
@@ -22,21 +104,21 @@
 section {
   width: 90%;
   margin: 2rem auto;
-  padding: 1.5rem;
+  padding: 1rem;
+  background-color: var(--color-fondo-indice-secciones);
+  border-radius: 2rem;
 }
 .tarjeta {
   width: 100%;
   margin: 0.5rem;
   padding: 1.5rem;
+  background-color: var(--color-blanco);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
-/*06 Tipografía, textos y enlaces*/
-/*titulos: Georgia, "Times New Roman", serif;
- texto: Arial, Helvetica, sans-serif;*/
 
 /*05 Bordes CSS*/
 .tarjeta {
-  border: 2px solid; /* px solo para bordes finos*/
+  border: 3px solid; /* px solo para bordes finos*/
   border-radius: 0.8rem;
 }
 .tarjeta.disponible {
@@ -45,6 +127,7 @@ section {
 .tarjeta.noDisponible {
   border-color: var(--color-rojo);
 }
+
 #estadisticas {
   border-radius: 0.8rem;
 }
@@ -53,7 +136,8 @@ section {
 header {
   position: sticky;
   top: 0;
-  /*z-index: 10;*/
+  z-index: 1;/*sino me sale debajo, 
+  si quisiera poner otra cosa por encima: z-index:2 y asi sucesivamente*/
 }
 .tarjeta {
   position: relative;
@@ -63,6 +147,7 @@ header {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+  color: var(--color-rojo);
 }
 
 /*08 Flexbox*/
@@ -70,14 +155,13 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 #indice {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
-h3,
-#indice {
-  background-color: var(#faf6ef);
-}
+

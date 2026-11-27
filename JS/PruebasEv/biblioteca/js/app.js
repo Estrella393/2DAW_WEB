@@ -64,4 +64,4 @@ catalogo.pintarSeccion(
 catalogo.pintarIndice();
 
 //mostrar estadisticas
-catalogo.pintarSeccion("Estadisticas globales", catalogo.mostrarEstatisticas());
+catalogo.mostrarEstatisticas();

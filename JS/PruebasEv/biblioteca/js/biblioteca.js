@@ -46,7 +46,7 @@ export class Biblioteca {
   /**
    * Devuelve libros cuyo título o autor contienen el texto, sin distinguir mayúsculas ni minúsculas
    * @param {string} texto con el que quieres buscar
-   * @returns {Libros[]} copia del array con el resultado
+   * @returns {Array[]} copia del array Libros[] con el resultado
    */
   buscar(texto) {
     const textoNormalizado = texto.toLowerCase();
@@ -61,7 +61,7 @@ export class Biblioteca {
   /**
    * Devuelve libros que pertenezcan a ese género
    * @param {string} genero con el que quieres buscar
-   * @returns {Libros[]} copia del array con el resultado
+   * @returns {Array[]} copia del array Libros[] con el resultado
    */
   filtrarPorGenero(genero) {
     //filter, map y slice NO modifican el array
@@ -74,7 +74,7 @@ export class Biblioteca {
   /**
    * si pone true se devuelven los libros disponibles y si pone false los prestados
    * @param {boolean} genero con el que quieres buscar
-   * @returns {Libros[]} copia del array con el resultado
+   * @returns {Array[]} copia del array Libros[] con el resultado
    */
   filtrarPorDisponibilidad(disponible) {
     //si el atributo prestado es falso significa que estan disponibles
@@ -91,7 +91,7 @@ export class Biblioteca {
    *  Y tiene que valer para string(localCompare) o numeros
    * @param {string} campo con el que quieres buscar
    * @param {boolean} ascendente define el orden
-   * @returns {Libro[]} nuevaBiblio: copia del array de Libro con el resultado
+   * @returns {Array[]} nuevaBiblio: copia del array de Libros[] con el resultado
    */
   ordenarPor(campo, ascendente) {
     const nuevaBiblio = [...this.libros]; //no vale const nuevaBiblio = this.libros; pq apuntaria al mismo array
@@ -126,7 +126,7 @@ export class Biblioteca {
    * Hace un objeto con: total de libros, disponibles, prestados,
    *  media de páginas (redondeada con Math), libro más antiguo
    * y número de libros por género (con un Map)
-   * @returns {Object} un set con el resultado
+   * @returns {Object} un obejeto con el resultado
    */
   estadisticas() {
     const estadisticas = new Object();
@@ -149,32 +149,49 @@ export class Biblioteca {
     return estadisticas;
   }
 
+   /**
+   * Muestra una tabla con la estatísticas 
+   * @returns {Void} 
+   */ 
   mostrarEstatisticas() {
-    const tabla = document.getElementById("estadisticas").value;
-    estadisticas = this.estadisticas();
-    tabla.innerHTML += `<table>
-  <tr>
-    <th>Total</th>
-    <th>Disponibles</th>
-    <th>Prestados</th>
-    <th>Media de páginas</th>
-    <th>Libro más antiguo</th>
-  </tr>
-  <tr>
-    <td>${estadisticas.total} </td>
-    <td>${estadisticas.disponibles}</td>
-    <td>${estadisticas.prestados}</td>
-    <td>${estadisticas.media}</td>
-    <td>${estadisticas.masAntiguo}</td>
-  </tr>
-</table>
-`;
-  }
-  //RF4
-  /**Genera seccion con título y:
-   * Cada tarjeta muestra título, autor, año, páginas, género y estado. Si la lista está vacía,
-   * muestra «No hay libros en esta sección»
-   * @returns {Object} un set con el resultado
+    const espacioEstadisticas = document.getElementById("estadisticas");
+    const estadisticas = this.estadisticas();
+  
+    let encabezados = "";
+    let cantidades = "";
+  
+    for (const [genero, cantidad] of estadisticas.porGenero) {
+      encabezados += `<th>${genero}</th>`;
+      cantidades += `<td>${cantidad}</td>`;
+    }
+  
+    espacioEstadisticas.innerHTML = `
+      <table>
+        <tr>
+          <th>Total</th>
+          <th>Disponibles</th>
+          <th>Prestados</th>
+          <th>Media de páginas</th>
+          <th>Libro más antiguo</th>
+          ${encabezados}
+        </tr>
+        <tr>
+          <td>${estadisticas.total}</td>
+          <td>${estadisticas.disponibles}</td>
+          <td>${estadisticas.prestados}</td>
+          <td>${estadisticas.media}</td>
+          <td>${estadisticas.masAntiguo}</td>
+          ${cantidades}
+        </tr>
+      </table>`;
+    }
+     //RF4
+  /**Genera seccion con título
+   * Cada tarjeta muestra título, autor, año, páginas, género y estado. 
+   * Si la lista está vacía, muestra «No hay libros en esta sección»
+   * @param {string} titulo título de la sección
+   * @param {Libro[]} lista libros que se mostrarán
+   * @returns {Void} 
    */
   pintarSeccion(titulo, lista) {
     //introduce código HTML dentro de un elemento de la página
@@ -195,7 +212,7 @@ export class Biblioteca {
           <p>Año: ${libro.anio}</p>
           <p>Páginas: ${libro.paginas}</p>
           <p>Género: ${libro.genero}</p>
-          <p >Estado : ${libro.disponible ? "Esta disponible" : "Esta prestado"}</p>
+          <p >Estado : ${libro.disponible ? "Está disponible" : "Está prestado"}</p>
         </article>`;
       }
     }
@@ -208,6 +225,10 @@ export class Biblioteca {
     //NO =: al llamar a la funcion dos veces me borra el cintenido anterior
   }
 
+   /**Genera el índice
+   * Para ello, añado a cada seccion un id y luego creo el enlace con su título
+   * @returns {Void} 
+   */ 
   pintarIndice() {
     //todos los elementos <section> de la página
     const secciones = document.querySelectorAll("section");
@@ -220,6 +241,10 @@ export class Biblioteca {
     });
   }
 }
+
+
+
+
 export const catalogo = new Biblioteca();
 catalogo.agregar(
   new Libro("Niebla", "Miguel de Unamuno", 1914, 280, "novela", true),
