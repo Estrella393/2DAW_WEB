@@ -1,6 +1,6 @@
 // js/app.js
 import { catalogo } from "./biblioteca.js";
-import { Biblioteca } from "./biblioteca.js";//para crear objetos Biblioteca
+import { Biblioteca } from "./biblioteca.js"; //para crear objetos Biblioteca
 
 //RF6 — Simulación de préstamos.
 
@@ -11,9 +11,9 @@ console.log("Préstamo 3:", catalogo.libros[3].prestar());
 //Devolver 1
 console.log("Devolución:", catalogo.libros[0].devolver());
 //intentar prestar uno que ya estaba prestado
-console.log("Préstamo repetido:",catalogo.libros[1].prestar());
+console.log("Préstamo repetido:", catalogo.libros[1].prestar());
 
-console.log(catalogo);
+console.table(catalogo); /*pide especificamente table (apartado obligatorio) */
 
 //RF5 — Vistas del catálogo.
 
@@ -60,7 +60,8 @@ catalogo.pintarSeccion(
   catalogo.buscar(TEXTO_BUSQUEDA),
 );
 
-
-
 //RF7
 catalogo.pintarIndice();
+
+//mostrar estadisticas
+catalogo.pintarSeccion("Estadisticas globales", catalogo.mostrarEstatisticas());

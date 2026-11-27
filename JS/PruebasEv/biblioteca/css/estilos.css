@@ -1,65 +1,83 @@
+/*00 02 03  */
+:root {
+  --color-indice-hover: #6a502c;
+  --color-fondo-indice: #ad904d;
+  --color-blanco: #ffffff; /*para la letra del indice */
 
+  --color-fondo: #faf6ef;
 
+  --color-verde: #3f5a3c;
+  --color-rojo: #b04a34;
+  --color-tarjeta: #e7dfd1;
+  --color-secciones: #ddd5c6;
+
+  --color-texto: #1f1f1c;
+  --color-texto-suave: #6b6b63;
+}
 
 /*04 Modelo de caja*/
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 section {
-    width: 90%;
-    margin: 2rem auto;
-    padding: 1.5rem;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 1.5rem;
 }
 .tarjeta {
-    width: 100%;
-    margin: 0.5rem;
-    padding: 1.5rem;
+  width: 100%;
+  margin: 0.5rem;
+  padding: 1.5rem;
 }
 
+/*06 Tipografía, textos y enlaces*/
+/*titulos: Georgia, "Times New Roman", serif;
+ texto: Arial, Helvetica, sans-serif;*/
 
 /*05 Bordes CSS*/
 .tarjeta {
-    border: 2px solid;
-    border-radius: 0.8rem;
+  border: 2px solid; /* px solo para bordes finos*/
+  border-radius: 0.8rem;
 }
 .tarjeta.disponible {
-    border-color: green;
+  border-color: var(--color-verde); /*o green*/
 }
 .tarjeta.noDisponible {
-    border-color: red;
+  border-color: var(--color-rojo);
 }
 #estadisticas {
-    border-radius: 0.8rem;
+  border-radius: 0.8rem;
 }
-
 
 /*07 Posicionamiento*/
 header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
+  position: sticky;
+  top: 0;
+  /*z-index: 10;*/
 }
 .tarjeta {
-    position: relative;
-    max-width: 20rem;
+  position: relative;
+  max-width: 20rem; /*ancho máximo definidos*/
 }
 .prestado {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 /*08 Flexbox*/
 .contenedor-tarjetas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-#indice{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    background-color: #bdc39f;
+#indice {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+h3,
+#indice {
+  background-color: var(#faf6ef);
 }
